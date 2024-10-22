@@ -61,8 +61,6 @@ public class Tutorial {
     }
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("subject", subject)
-                .toString();
+        return "Tutorial{subject=" + this.getSubject() + "}";
     }
 }
