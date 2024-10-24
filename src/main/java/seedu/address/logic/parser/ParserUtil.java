@@ -37,6 +37,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -109,7 +110,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String payment} into an {@code Payment}.
-     * Leading and trailing whitespaces will be trimmed
+     * Leading and trailing whitespaces will be trimmed.
      */
     public static Payment parsePayment(String payment) throws ParseException {
         String trimmedPayment = payment.trim();
@@ -121,7 +122,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String fee} into an {@code Fees}.
-     * Leading and trailing whitespaces will be trimmed, all characters are converted to lower case
+     * Leading and trailing whitespaces will be trimmed, all characters are converted to lower case.
      */
     public static Fees parseFees(String payment) throws ParseException {
         String trimmedFees = payment.trim().toLowerCase();
@@ -133,7 +134,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String attendance} into an {@code Attendance}.
-     * Leading and trailing whitespaces will be trimmed
+     * Leading and trailing whitespaces will be trimmed.
      */
     public static Attendance parseAttendance(String attendance) throws ParseException {
         String trimmedAttendance = attendance.trim();
@@ -146,7 +147,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String attendance} into an {@code Attendance}.
-     * Leading and trailing whitespaces will be trimmed
+     * Leading and trailing whitespaces will be trimmed.
      */
     public static Tutorial parseTutorial(String subject) throws ParseException {
         requireNonNull(subject);
@@ -217,6 +218,13 @@ public class ParserUtil {
         return trimmedArgs;
     }
 
+    /**
+     * Parses start and end LocalDate from the find command, and verifies date range is valid.
+     *
+     * @param searchString The search string containing {@code startDate} and {@code endDate}.
+     * @return Size 2 LocalDate array with {@code {startDate, endDate}}.
+     * @throws ParseException if {@code startDate} is after {@code endDate}.
+     */
     public static LocalDate[] parseAttendanceDate(String searchString) throws ParseException {
         String trimmedString = parseMultipleWordsFromFindCommand(searchString);
         String[] attendanceDates = validateAndSplitDateString(trimmedString);
@@ -231,7 +239,7 @@ public class ParserUtil {
         return new LocalDate[]{startDate, endDate};
     }
 
-    public static String[] validateAndSplitDateString(String dateInput) throws ParseException {
+    private static String[] validateAndSplitDateString(String dateInput) throws ParseException {
         String[] dateParts = dateInput.split(":");
         if (dateParts.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -239,7 +247,7 @@ public class ParserUtil {
         return dateParts;
     }
 
-    public static LocalDate parseDate(String dateString) throws ParseException {
+    private static LocalDate parseDate(String dateString) throws ParseException {
         try {
             return LocalDate.parse(parseSingleWordFromFindCommand(dateString), Attendance.VALID_DATE_FORMAT);
         } catch (DateTimeParseException e) {

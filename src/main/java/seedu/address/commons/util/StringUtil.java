@@ -54,8 +54,9 @@ public class StringUtil {
      *       isWordPresentIgnoreCase("1236", "1236") == true
      *       isWordPresentIgnoreCase("1236", "13") == false //not an exact string match
      *       </pre>
-     * @param wordFromPerson cannot be null, must be a single word
-     * @param wordToCheck cannot be null, cannot be empty, must be a single word
+     *
+     * @param wordFromPerson cannot be null, must be a single word.
+     * @param wordToCheck cannot be null, cannot be empty, must be a single word.
      * @return {@code true} if the word is found within another word, ignoring case;
      *         {@code false} otherwise.
      */
@@ -77,6 +78,9 @@ public class StringUtil {
         return wordFromPerson.toLowerCase(Locale.ROOT).contains(wordToCheck.toLowerCase(Locale.ROOT));
     }
 
+    /**
+     * Checks if two strings are matching, ignoring leading and trailing spaces and case.
+     */
     public static boolean areMatchingStringsIgnoreCase(String firstString, String secondString) {
         requireNonNull(firstString);
         requireNonNull(secondString);
@@ -105,6 +109,7 @@ public class StringUtil {
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     *
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isNonZeroUnsignedInteger(String s) {

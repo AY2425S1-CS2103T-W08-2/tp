@@ -6,6 +6,9 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 
+/**
+ * Tests if a Person's Participation's Tutorial subject matches a given keyword
+ */
 public class SubjectMatchesKeywordsPredicate implements Predicate<Person> {
     private final String keyword;
 

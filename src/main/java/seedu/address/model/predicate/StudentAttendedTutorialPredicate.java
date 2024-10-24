@@ -13,6 +13,13 @@ public class StudentAttendedTutorialPredicate implements Predicate<Person> {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
+    /**
+     * Creates a Predicate to test if any of Person Participation Attendance attendanceDate falls within
+     * specified range.
+     *
+     * @param startDate start of range.
+     * @param endDate end of range.
+     */
     public StudentAttendedTutorialPredicate(LocalDate startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
